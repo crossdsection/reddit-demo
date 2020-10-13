@@ -1,6 +1,8 @@
 const AuthController = require("./auth");
 const ThreadController = require("./thread");
 const PostController = require("./post");
+const ReactionTypeController = require("./reactiontype");
+const ReactionController = require("./react");
 
 const routes = [];
 function addToRoutes(controller) {
@@ -11,5 +13,7 @@ function addToRoutes(controller) {
 addToRoutes(AuthController);
 addToRoutes(ThreadController);
 addToRoutes(PostController);
+addToRoutes(ReactionTypeController);
+addToRoutes(ReactionController);
 
 module.exports = routes;

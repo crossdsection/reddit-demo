@@ -26,7 +26,7 @@ module.exports = [
                     content: post.content,
                     postId: post._id,
                 };
-                return h.response({"error" : 0, message: "Success!!", data: responseData}).code(201)   
+                return h.response({error : 0, message: "Success!!", data: responseData}).code(201)   
             } catch(err) {
                 throw Boom.badRequest(err);
             }

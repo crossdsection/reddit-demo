@@ -49,7 +49,7 @@ module.exports = [
                 }
               });
             });
-            return h.response({"error" : 0, message:"Success", token: token}).code(201);
+            return h.response({error : 0, message:"Success", token: token}).code(201);
           } 
           
           throw Boom.badRequest('Incorrect username or email!');
@@ -81,13 +81,13 @@ module.exports = [
           }
           return user;
         });
-        return h.response({"error" : 0, message:"Success!!"}).code(201);
+        return h.response({error : 0, message:"Success!!"}).code(201);
       },
       options: {
         auth: false,
         pre: [
           { method: verifyUniqueUser }
-        ],          
+        ],
         description: 'Register API',
         notes: 'Validate and Register User',
         tags: ['api', 'register'],

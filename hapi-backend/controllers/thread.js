@@ -22,7 +22,7 @@ module.exports = [
                 content: thread.content,
                 threadId: thread._id,
             };
-            return h.response({"error" : 0, message: "Success!!", data: responseData}).code(201)
+            return h.response({error : 0, message: "Success!!", data: responseData}).code(201)
         },
         options: {
             auth: 'jwt',
