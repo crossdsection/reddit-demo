@@ -5,7 +5,7 @@ const Boom = require("@hapi/boom");
 module.exports = [
     {
         method: 'POST',
-        path: '/create',
+        path: '/thread/create',
         config: {
             description: 'Create Threads',
             notes: 'Returns created object with ID',

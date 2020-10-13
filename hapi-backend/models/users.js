@@ -2,8 +2,8 @@ const mongoose = require("mongoose");
 const { Schema } = mongoose;
 
 const Users = new Schema({
-  password: { type: String },
-  email: { type: String, unique: true },
+  password: { type: String, required: true },
+  email: { type: String, unique: true, required: true },
 }, {
   timestamps: true,
 });
