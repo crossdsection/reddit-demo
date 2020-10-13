@@ -50,10 +50,9 @@ module.exports = [
               });
             });
             return h.response({"error" : 0, message:"Success", token: token}).code(201);
-          } else {
-            throw Boom.badRequest('Incorrect username or email!');
-          }
-        
+          } 
+          
+          throw Boom.badRequest('Incorrect username or email!');
         },
         options: {
             auth: false,
@@ -79,7 +78,7 @@ module.exports = [
         await user.save((err, user) => {
           if (err) {
             throw Boom.badRequest(err);
-              }
+          }
           return user;
         });
         return h.response({"error" : 0, message:"Success!!"}).code(201);

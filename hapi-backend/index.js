@@ -15,13 +15,20 @@ const swaggerOptions = {
     }
 };
 
+const validate = async function (decoded, request, h) {
+    if (Date.now() < decoded.exp) {
+      return { isValid: false };
+    } else {
+      return { isValid: true };
+    }
+};
+
 const init = async () => {
     const server = Hapi.server({
         port: 3000,
         host: 'localhost'
     });
 
-    server.route(Routes);
     await server.register([
         Inert,
         Vision,
@@ -33,10 +40,10 @@ const init = async () => {
     ]);
     server.auth.strategy('jwt', 'jwt', { 
         key: config.secret, 
-        validate() {
-            return true;
-        }
+        validate
     });
+
+    server.route(Routes);
 
     server.auth.default('jwt');
 
