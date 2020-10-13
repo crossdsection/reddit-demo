@@ -6,6 +6,7 @@ const HapiSwagger = require('hapi-swagger');
 const HapiJwt2 = require('hapi-auth-jwt2');
 const Mongoose = require('mongoose');
 const Routes = require('./controllers/index');
+const config = require('./config');
 
 const swaggerOptions = {
     info: {
@@ -31,7 +32,7 @@ const init = async () => {
         HapiJwt2
     ]);
     server.auth.strategy('jwt', 'jwt', { 
-        key: 'NeverShareYourSecret', 
+        key: config.secret, 
         validate() {
             return true;
         }
@@ -39,7 +40,7 @@ const init = async () => {
 
     server.auth.default('jwt');
 
-    await Mongoose.connect('mongodb://localhost/reddit-demo', { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true }, (err) => {
+    await Mongoose.connect(config.dbURL, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true }, (err) => {
         if (err) {
             throw err;
         }

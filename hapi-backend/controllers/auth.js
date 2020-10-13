@@ -1,6 +1,8 @@
 const User = require('../models/users');
- const Joi = require("joi");
- const Boom = require("@hapi/boom");
+const createToken = require('../utils/token');
+
+const Joi = require("joi");
+const Boom = require("@hapi/boom");
 const bcrypt = require('bcrypt');
  
 async function hashPassword(password, cb) {
@@ -30,13 +32,39 @@ module.exports = [
     {
         method: 'POST',
         path: '/auth/login',
-        config: {
+        handler: async function(request, h){
+          const user = await User.findOne({
+            $or: [
+              { email: request.payload.email }
+            ]
+          });
+          
+          if (user) {
+            const token = await new Promise((resolve, reject) => {
+              bcrypt.compare(request.payload.password, user.password, (err, isValid) => {
+                if (isValid) {
+                  resolve(createToken(user));
+                } else {
+                  throw Boom.badRequest('Incorrect password!');
+                }
+              });
+            });
+            return h.response({"error" : 0, message:"Success", token: token}).code(201);
+          } else {
+            throw Boom.badRequest('Incorrect username or email!');
+          }
+        
+        },
+        options: {
             auth: false,
             description: 'Login API',
             notes: 'Return Access Token',
             tags: ['api', 'login'],
-            handler: function(request, h){
-                throw Boom.notFound();
+            validate: {
+              payload: Joi.object({
+                  email: Joi.string().email().required(),
+                  password: Joi.string().required()
+                })          
             }
         }
     }, 
@@ -46,20 +74,15 @@ module.exports = [
       handler: async function(request, h){
         let user = new User();
         user.email = request.payload.email;
-            
         const hash = await hashPassword(request.payload.password);
-
         user.password = hash;
-
         await user.save((err, user) => {
           if (err) {
             throw Boom.badRequest(err);
               }
           return user;
         });
-        
-        return h.response(user).code(201);
-
+        return h.response({"error" : 0, message:"Success!!"}).code(201);
       },
       options: {
         auth: false,
