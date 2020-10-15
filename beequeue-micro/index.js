@@ -5,6 +5,7 @@ const Queue = require('bee-queue');
 const Redis = require('redis');
 
 const updateReplyCount = require('./controllers/replycount');
+const updateReactionCount = require('./controllers/reactioncount');
 
 Mongoose.connect(config.dbURL, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true }, (err) => {
     if (err) {
@@ -22,16 +23,11 @@ const replyCountQueue = new Queue('REPLY_COUNT', sharedConfig);
 const reactionCountQueue = new Queue('REACTION_COUNT', sharedConfig);  
 
 replyCountQueue.process(async (job) => {
-    const param = JSON.parse(job.data);
-    await updateReplyCount( param );
+    await updateReplyCount( job.data );
 });
 
-reactionCountQueue.process((job) => {
-    console.log(job);
-    // const param = {
-    //     postId : data._id
-    // }
-    // updateReplyCount( param );
+reactionCountQueue.process(async (job) => {
+    await updateReactionCount( job.data );
 });
 
 process.on('unhandledRejection', (err) => {

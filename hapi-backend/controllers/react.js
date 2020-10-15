@@ -44,7 +44,13 @@ module.exports = [
                     return reaction;
                 });
 
-                updateReactionCount(JSON.stringify({data: reaction, email: request.auth.credentials.username}));
+                const param = {
+                    reactionTypeId: reaction.reactionTypeId,
+                    threadId: reaction.threadId, 
+                    postId: reaction.postId, 
+                    user: { userId: reaction.userId, username: request.auth.credentials.username } 
+                };
+                updateReactionCount(param);
 
                 return h.response({
                     error : 0, 

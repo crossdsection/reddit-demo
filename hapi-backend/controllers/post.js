@@ -23,11 +23,11 @@ module.exports = [
                     return post;
                 });
             
-                if( post.threadId != null )  updateReplyCount(JSON.stringify({threadId: post.threadId}));
+                if( post.threadId != null )  updateReplyCount({threadId: post.threadId});
 
-                if( post.parentPostId != null )  updateReplyCount(JSON.stringify({postId: post.parentPostId}));
+                if( post.parentPostId != null )  updateReplyCount({postId: post.parentPostId});
 
-                updateReplyCount(JSON.stringify({postId: post._id}));
+                updateReplyCount({postId: post._id});
 
                 const responseData = {
                     content: post.content,

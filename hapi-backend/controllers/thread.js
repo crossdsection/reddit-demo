@@ -20,7 +20,7 @@ module.exports = [
                 return thread;
             });
 
-            updateReplyCount(JSON.stringify({threadId: thread._id}));
+            updateReplyCount({threadId: thread._id});
             
             const responseData = {
                 title: thread.title,

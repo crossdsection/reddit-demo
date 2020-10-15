@@ -11,4 +11,4 @@ const ReactionCounts = new Schema({
   timestamps: true,
 });
 
-module.exports = mongoose.model("Reactions", Reactions);
+module.exports = mongoose.model("ReactionCounts", ReactionCounts);
