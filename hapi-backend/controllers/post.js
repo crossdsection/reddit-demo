@@ -1,7 +1,8 @@
-const Posts = require('../models/posts');
+const Posts = require("../models/posts");
+const { updateReplyCount } = require("../utils/notification");
+
 const Joi = require("joi");
 const Boom = require("@hapi/boom");
-
 module.exports = [
     {
         method: 'POST',
@@ -21,7 +22,13 @@ module.exports = [
                     }
                     return post;
                 });
-    
+            
+                if( post.threadId != null )  updateReplyCount(JSON.stringify({threadId: post.threadId}));
+
+                if( post.parentPostId != null )  updateReplyCount(JSON.stringify({postId: post.parentPostId}));
+
+                updateReplyCount(JSON.stringify({postId: post._id}));
+
                 const responseData = {
                     content: post.content,
                     postId: post._id,

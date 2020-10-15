@@ -1,6 +1,7 @@
 const Reactions = require('../models/reactions');
 const Joi = require("joi");
 const Boom = require("@hapi/boom");
+const { updateReactionCount } = require("../utils/notification");
 
 async function verifyUniqueReaction(req, h) {
     const condition = {
@@ -42,6 +43,9 @@ module.exports = [
                     }
                     return reaction;
                 });
+
+                updateReactionCount(JSON.stringify({data: reaction, email: request.auth.credentials.username}));
+
                 return h.response({
                     error : 0, 
                     message: "Success!!", 

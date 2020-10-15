@@ -1,4 +1,6 @@
 const Threads = require('../models/threads');
+const { updateReplyCount } = require("../utils/notification");
+
 const Joi = require("joi");
 const Boom = require("@hapi/boom");
 
@@ -17,6 +19,9 @@ module.exports = [
                 }
                 return thread;
             });
+
+            updateReplyCount(JSON.stringify({threadId: thread._id}));
+            
             const responseData = {
                 title: thread.title,
                 content: thread.content,
