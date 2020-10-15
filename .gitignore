@@ -1,2 +1,2 @@
-./hapi-backend/node_modules
-./beequeue-micro/node_modules
+hapi-backend/node_modules
+beequeue-micro/node_modules
