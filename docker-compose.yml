@@ -2,14 +2,12 @@ version: "3"
 services:
   app:
     container_name: hapiBackend
-    image: hapi
+    build: ./hapi-backend
     ports: 
       - "3000:3000"
     depends_on:
       - mongodb
       - redisdb
-    volumes:
-      - ./server:/server/
     environment:
       MONGODB_HOST: mongodb
       MONGODB_PORT: "27017"
@@ -17,7 +15,7 @@ services:
       REDIS_PORT: "6379"
   micro:
     container_name: beequeueMicro
-    image: beequeue-micro
+    build: ./beequeue-micro
     depends_on:
       - mongodb
       - redisdb
