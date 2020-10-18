@@ -5,6 +5,7 @@ const Vision = require('@hapi/vision');
 const HapiSwagger = require('hapi-swagger');
 const HapiJwt2 = require('hapi-auth-jwt2');
 const Mongoose = require('mongoose');
+
 const Routes = require('./controllers/index');
 const config = require('./config');
 
@@ -14,6 +15,8 @@ const swaggerOptions = {
         version: '0.0.1',
     }
 };
+
+if( process.env.MONGODB_HOST ) config.dbURL = "mongodb://" + process.env.MONGODB_HOST + ":" + process.env.MONGODB_PORT + "/reddit-demo";
 
 const validate = async function (decoded, request, h) {
     if (Date.now() < decoded.exp) {
@@ -25,8 +28,7 @@ const validate = async function (decoded, request, h) {
 
 const init = async () => {
     const server = Hapi.server({
-        port: 3000,
-        host: 'localhost'
+        port: 3000
     });
 
     await server.register([

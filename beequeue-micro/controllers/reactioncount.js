@@ -12,13 +12,11 @@ function updateReactionCount(params){
     if( params.postId ) {
         condition['postId'] = ObjectId(params.postId);
     }
-    console.log(condition, params);
     ReactionCounts.findOne(condition, async function(err, result) {
         if(err) throw err;
 
         if(result != null) {
             const response = await ReactionCounts.updateOne({ _id : new ObjectId(result._id)}, { count: (result.count + 1), $push: { users: params.user } });
-            console.log(response);
         } else {
             let reactionCount = new ReactionCounts();
             reactionCount.count = 1;
@@ -30,7 +28,6 @@ function updateReactionCount(params){
                 if (err) {
                     throw err;
                 }
-                console.log(result)
                 return result;
             });
         }

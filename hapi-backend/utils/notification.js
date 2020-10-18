@@ -2,6 +2,8 @@ const Redis = require("redis");
 const Queue = require("bee-queue");
 const config = require("../config")
 
+if( process.env.REDIS_HOST ) config.redisURL = "redis://" + process.env.REDIS_HOST + ":" + process.env.REDIS_PORT;
+
 const sharedConfig = {
     redis: config.redisURL,
     isWorker: false,
