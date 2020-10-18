@@ -8,7 +8,7 @@ const updateReplyCount = require('./controllers/replycount');
 const updateReactionCount = require('./controllers/reactioncount');
 
 if( process.env.REDIS_HOST ) config.redisURL = "redis://" + process.env.REDIS_HOST + ":" + process.env.REDIS_PORT;
-if( process.env.MONGODB_HOST ) config.dbURL = "mongodb://" + process.env.MONGODB_HOST + ":" + process.env.MONGODB_PORT + "/reddit-demo";
+if( process.env.MONGO_HOST ) config.dbURL = "mongodb://" + process.env.MONGO_USER + ":" + process.env.MONGO_PASS + "@" + process.env.MONGO_HOST + ":" + process.env.MONGO_PORT + "/" + process.env.MONGO_DB;
 
 console.log(config.redisURL);
 console.log(config.dbURL);

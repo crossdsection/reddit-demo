@@ -16,7 +16,8 @@ const swaggerOptions = {
     }
 };
 
-if( process.env.MONGODB_HOST ) config.dbURL = "mongodb://" + process.env.MONGODB_HOST + ":" + process.env.MONGODB_PORT + "/reddit-demo";
+
+if( process.env.MONGO_HOST ) config.dbURL = "mongodb://" + process.env.MONGO_USER + ":" + process.env.MONGO_PASS + "@" + process.env.MONGO_HOST + ":" + process.env.MONGO_PORT + "/" + process.env.MONGO_DB;
 
 const validate = async function (decoded, request, h) {
     if (Date.now() < decoded.exp) {
