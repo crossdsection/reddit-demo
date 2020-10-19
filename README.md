@@ -22,7 +22,7 @@
 
 - [REDIS](https://redis.io/download#installation) - Our Messaging System
 
-- As the system requires docker for launch, gollow below links for installation - 
+- As the system requires docker for launch, follow below links for installation - 
 
     - [Docker-Engine](https://docs.docker.com/engine/install/ubuntu/)
     - [Docker-Compose](https://docs.docker.com/compose/install/)
