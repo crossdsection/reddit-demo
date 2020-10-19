@@ -6,6 +6,8 @@ services:
       MONGO_USER: reddituser
       MONGO_PASS: redditpass
       MONGO_DB: reddit-demo
+    ports: 
+      - "27017:27017"
     networks:
       - reddit
     volumes:

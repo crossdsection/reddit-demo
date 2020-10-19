@@ -1,8 +1,45 @@
 const Posts = require("../models/posts");
-const { updateReplyCount } = require("../utils/notification");
-
+const Threads = require("../models/threads");
+const ObjectId = require('mongoose').Types.ObjectId; 
 const Joi = require("joi");
 const Boom = require("@hapi/boom");
+
+const { updateReplyCount } = require("../utils/notification");
+
+async function verifyParentExist(req, h) {
+    if( req.payload.thread_id ) {
+        if( !ObjectId.isValid(req.payload.thread_id) ) {
+            throw Boom.badRequest("Invalid thread id!");
+        }
+
+        const threads = await Threads.find({
+            _id: req.payload.thread_id
+        });
+
+        if (threads !== null && threads.length > 0) {
+            return req;
+        } else {
+            throw Boom.badRequest("Thread Not Found!");
+        }
+    }
+    if( req.payload.parent_post_id ) {
+        if( !ObjectId.isValid(req.payload.parent_post_id) ) {
+            throw Boom.badRequest("Invalid post id!");
+        }
+
+        const post = await Posts.find({
+            _id: req.payload.parent_post_id
+        });
+
+        if (post !== null && post.length > 0) {
+            return req;
+        } else {
+            throw Boom.badRequest("Thread Not Found!");
+        }
+    }
+}
+
+
 module.exports = [
     {
         method: 'POST',
@@ -43,6 +80,9 @@ module.exports = [
             description: 'Create Posts',
             notes: 'POST API - Create Posts\n\nHEADER - Authorization : <token returned at login>\n\nPOST DATA - \n\nEither parent_post_id or thread_id to be sent.\n\n{\n  \"content\": \"First Post on Second Thread\",\n  \"parent_post_id\": \"5f8bf866f1ec050014e82e42\", \n  \"thread_id\": \"5f8bf866f1ec050014e82e42\"\n}\n\nRESPONSE\n{\n    \"error\": 0,\n    \"message\": \"Success!!\",\n    \"data\": {\n        \"content\": \"First Post on Second Thread\",\n        \"postId\": \"5f8bf86ef1ec050014e82e43\"\n    }\n}',
             tags: ['api', 'posts', 'create'],
+            pre: [
+                { method: verifyParentExist }
+            ],
             validate: {
                 payload: Joi.object({
                     content: Joi.string().required(),

@@ -17,6 +17,7 @@ function updateReactionCount(params){
 
         if(result != null) {
             const response = await ReactionCounts.updateOne({ _id : new ObjectId(result._id)}, { count: (result.count + 1), $push: { users: params.user } });
+            return response;
         } else {
             let reactionCount = new ReactionCounts();
             reactionCount.count = 1;

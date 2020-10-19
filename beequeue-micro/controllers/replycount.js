@@ -10,12 +10,13 @@ function updateReplyCount(params){
     if( params.postId ) {
         condition['postId'] = ObjectId(params.postId);
     }
-    console.log(condition, params);
+    
     ReplyCounts.findOne(condition, async function(err, result) {
         if(err) throw err;
 
         if(result != null) {
             const response = await ReplyCounts.updateOne({ _id : new ObjectId(result._id)}, { count: (result.count + 1) });
+            return response;
         } else {
             let replyCount = new ReplyCounts();
             replyCount.count = 0;
