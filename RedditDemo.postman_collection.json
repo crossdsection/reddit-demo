@@ -21,10 +21,13 @@
 					"raw": "{\n  \"email\": \"ad@bla.com\",\n  \"password\": \"b3lapass\"\n}"
 				},
 				"url": {
-					"raw": "http://localhost:3000/auth/register",
+					"raw": "http://10.0.0.216:3000/auth/register",
 					"protocol": "http",
 					"host": [
-						"localhost"
+						"10",
+						"0",
+						"0",
+						"216"
 					],
 					"port": "3000",
 					"path": [
@@ -178,6 +181,40 @@
 					]
 				},
 				"description": "GET API \n\nHEADER - Authorization : <token returned at auth/login>\n\nResponse -\n\n{\n    \"error\": 0,\n    \"message\": \"Success!!\",\n    \"data\": [\n        {\n            \"_id\": \"5f8c35460cabdba16e25d698\",\n            \"codes\": \"1F44E\",\n            \"char\": \"👎\",\n            \"name\": \"thumbs down\",\n            \"category\": \"People & Body (hand-fingers-closed)\",\n            \"group\": \"People & Body\",\n            \"subgroup\": \"hand-fingers-closed\"\n        },\n        {\n            \"_id\": \"5f8c35460cabdba16e25d699\",\n            \"codes\": \"1F44D\",\n            \"char\": \"👍\",\n            \"name\": \"thumbs up\",\n            \"category\": \"People & Body (hand-fingers-closed)\",\n            \"group\": \"People & Body\",\n            \"subgroup\": \"hand-fingers-closed\"\n        },\n        {\n            \"_id\": \"5f8c35460cabdba16e25d69a\",\n            \"codes\": \"1F4AF\",\n            \"char\": \"💯\",\n            \"name\": \"hundred points\",\n            \"category\": \"Smileys & Emotion (emotion)\",\n            \"group\": \"Smileys & Emotion\",\n            \"subgroup\": \"emotion\"\n        }\n    ]\n}"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:3000/react",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmOGNhNDg4MGQzZmIwMDAxOWJhYWM0NCIsInVzZXJuYW1lIjoiYWRAYmxhLmNvbSIsImRhdGUiOiIyMDIwLTEwLTE4VDIwOjI0OjU0Ljk5OFoiLCJpYXQiOjE2MDMwNTI2OTQsImV4cCI6MTYwMzA1NjI5NH0.d5TJCV5b1MfDFytBrM_CUqS5OLDesfMNbPHcJRBUB6w",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"reaction_type_id\": \"5f8ca44f622d792fdede1b80\",\n    \"thread_id\": \"5f8ca4b00d3fb00019baac47\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:3000/react",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"react"
+					]
+				}
 			},
 			"response": []
 		}
