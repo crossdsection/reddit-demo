@@ -40,8 +40,10 @@ Open Project Repository in terminal -
 
 - Latest image building and initial local check
 
-```sudo chmod +x docker.sh
-   sudo ./docker.sh```
+```
+sudo chmod +x docker.sh
+sudo ./docker.sh
+```
 
 - Once the above had built all images and finished launching. Use `localhost:3000` for our test the API endpoints provided below
 
@@ -79,7 +81,8 @@ Open Project Repository in terminal -
 
 - We will get an output like below
 
-```ID                  NAME                      NODE
+```
+ID                  NAME                      NODE
 oc8eczare6wv        reddit-demo_app.1         manager
 u3mz2zgn085a         \_ reddit-demo_app.1     worker2
 afdgmos1hbyh         \_ reddit-demo_app.1     worker1
@@ -87,7 +90,8 @@ tou3u1t26vk5        reddit-demo_micro.1       manager
 wo142yj90hbs         \_ reddit-demo_micro.1   worker1
 feuc5ymz3jn7         \_ reddit-demo_micro.1   worker1
 fstbz8kthp5l        reddit-demo_mongodb.1     worker3
-951docut0zav        reddit-demo_redisdb.1     manager```
+951docut0zav        reddit-demo_redisdb.1     manager
+```
 
 ## API 
 
