@@ -32,7 +32,7 @@ module.exports = [
         options: {
             auth: 'jwt',
             description: 'Create Threads',
-            notes: 'Returns created object with ID',
+            notes: 'POST API - Create Threads \n\nHeader - Authorization: <token returned at login>\n\nPOST DATA - \n\n{\n  \"title\": \"This is a new thread title\",\n  \"content\": \"This is a thread content\"\n}\n\nRESPONSE -\n\n{\n    \"error\": 0,\n    \"message\": \"Success!!\",\n    \"data\": {\n        \"title\": \"This is a new thread title\",\n        \"content\": \"This is a thread content\",\n        \"threadId\": \"5f8bf85bf1ec050014e82e3e\"\n    }\n}',
             tags: ['api', 'threads', 'create'],
             validate: {
                 payload: Joi.object({

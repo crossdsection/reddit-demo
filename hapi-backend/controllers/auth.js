@@ -57,7 +57,7 @@ module.exports = [
         options: {
             auth: false,
             description: 'Login API',
-            notes: 'Return Access Token',
+            notes: 'POST API - Login Using this API, and use the response token as header Authorization in non-authentication APIS.\n\nPOST DATA \n\n{\n    \"email\": <valid>,\n    \"password\": text\n}\n\nRESPONSE - \n\n{\n    \"error\": 0,\n    \"message\": \"Success\",\n    \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmOGMzNjM0Y2YyMjE3MDAxMzRmNzZkMyIsInVzZXJuYW1lIjoiYWRAYmxhLmNvbSIsImRhdGUiOiIyMDIwLTEwLTE4VDEyOjM0OjE0LjkwNFoiLCJpYXQiOjE2MDMwMjQ0NTQsImV4cCI6MTYwMzAyODA1NH0.Xyqgkq9dUWe3XYZhLC7c_apZ9tBIQnnUg7VV59Q-oPE\"\n}',
             tags: ['api', 'login'],
             validate: {
               payload: Joi.object({
@@ -89,7 +89,7 @@ module.exports = [
           { method: verifyUniqueUser }
         ],
         description: 'Register API',
-        notes: 'Validate and Register User',
+        notes: 'POST API - Register a user using this API\n\nPOST DATA\n\n{\n    \"email\" : <valid>\n    \"password\" : <valid>\n}\n\nRESPONSE\n\n{\n    \"error\": 0,\n    \"message\": \"Success!!\"\n}',
         tags: ['api', 'register'],
         validate: {
           payload: Joi.object({

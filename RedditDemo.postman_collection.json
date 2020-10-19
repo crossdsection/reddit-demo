@@ -21,13 +21,13 @@
 					"raw": "{\n  \"email\": \"ad@bla.com\",\n  \"password\": \"b3lapass\"\n}"
 				},
 				"url": {
-					"raw": "http://10.0.0.216:3000/auth/register",
+					"raw": "http://192.168.43.8:3000/auth/register",
 					"protocol": "http",
 					"host": [
-						"10",
-						"0",
-						"0",
-						"216"
+						"192",
+						"168",
+						"43",
+						"8"
 					],
 					"port": "3000",
 					"path": [
@@ -35,7 +35,7 @@
 						"register"
 					]
 				},
-				"description": "POST API \n\nPOST DATA\n\n{\n    \"email\" : <valid>\n    \"password\" : <valid>\n}"
+				"description": "POST API - Register a user using this API\n\nPOST DATA\n\n{\n    \"email\" : <valid>\n    \"password\" : <valid>\n}\n\nRESPONSE\n\n{\n    \"error\": 0,\n    \"message\": \"Success!!\"\n}"
 			},
 			"response": []
 		},
@@ -55,10 +55,13 @@
 					"raw": "{\n  \"email\": \"ad@bla.com\",\n  \"password\": \"b3lapass\"\n}"
 				},
 				"url": {
-					"raw": "http://localhost:3000/auth/login",
+					"raw": "http://192.168.43.8:3000/auth/login",
 					"protocol": "http",
 					"host": [
-						"localhost"
+						"192",
+						"168",
+						"43",
+						"8"
 					],
 					"port": "3000",
 					"path": [
@@ -66,7 +69,7 @@
 						"login"
 					]
 				},
-				"description": "POST API \n\nPOST DATA \n\n{\n    \"email\": <valid>,\n    \"password\": text\n}\n\nRESPONSE - \n\n{\n    \"error\": 0,\n    \"message\": \"Success\",\n    \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmOGMzNjM0Y2YyMjE3MDAxMzRmNzZkMyIsInVzZXJuYW1lIjoiYWRAYmxhLmNvbSIsImRhdGUiOiIyMDIwLTEwLTE4VDEyOjM0OjE0LjkwNFoiLCJpYXQiOjE2MDMwMjQ0NTQsImV4cCI6MTYwMzAyODA1NH0.Xyqgkq9dUWe3XYZhLC7c_apZ9tBIQnnUg7VV59Q-oPE\"\n}"
+				"description": "POST API - Login Using this API, and use the response token as header Authorization in non-authentication APIS.\n\nPOST DATA \n\n{\n    \"email\": <valid>,\n    \"password\": text\n}\n\nRESPONSE - \n\n{\n    \"error\": 0,\n    \"message\": \"Success\",\n    \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmOGMzNjM0Y2YyMjE3MDAxMzRmNzZkMyIsInVzZXJuYW1lIjoiYWRAYmxhLmNvbSIsImRhdGUiOiIyMDIwLTEwLTE4VDEyOjM0OjE0LjkwNFoiLCJpYXQiOjE2MDMwMjQ0NTQsImV4cCI6MTYwMzAyODA1NH0.Xyqgkq9dUWe3XYZhLC7c_apZ9tBIQnnUg7VV59Q-oPE\"\n}"
 			},
 			"response": []
 		},
@@ -82,13 +85,13 @@
 					},
 					{
 						"key": "Authorization",
-						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmOGMzNjM0Y2YyMjE3MDAxMzRmNzZkMyIsInVzZXJuYW1lIjoiYWRAYmxhLmNvbSIsImRhdGUiOiIyMDIwLTEwLTE4VDEyOjM0OjE0LjkwNFoiLCJpYXQiOjE2MDMwMjQ0NTQsImV4cCI6MTYwMzAyODA1NH0.Xyqgkq9dUWe3XYZhLC7c_apZ9tBIQnnUg7VV59Q-oPE",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmOGNhNDg4MGQzZmIwMDAxOWJhYWM0NCIsInVzZXJuYW1lIjoiYWRAYmxhLmNvbSIsImRhdGUiOiIyMDIwLTEwLTE4VDIwOjI0OjU0Ljk5OFoiLCJpYXQiOjE2MDMwNTI2OTQsImV4cCI6MTYwMzA1NjI5NH0.d5TJCV5b1MfDFytBrM_CUqS5OLDesfMNbPHcJRBUB6w",
 						"type": "text"
 					}
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n  \"title\": \"This is a new thread title\",\n  \"content\": \"This is a thread content\"\n}\n",
+					"raw": "{\n  \"title\": \"This is a new thread title 1\",\n  \"content\": \"This is a thread content 1\"\n}\n",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -107,7 +110,7 @@
 						"create"
 					]
 				},
-				"description": "POST API -\n\nHeader - Authorization: <token returned at login>\n\nPOST DATA - \n\n{\n  \"title\": \"This is a new thread title\",\n  \"content\": \"This is a thread content\"\n}\n\nRESPONSE -\n\n{\n    \"error\": 0,\n    \"message\": \"Success!!\",\n    \"data\": {\n        \"title\": \"This is a new thread title\",\n        \"content\": \"This is a thread content\",\n        \"threadId\": \"5f8bf85bf1ec050014e82e3e\"\n    }\n}"
+				"description": "POST API - Create Threads \n\nHeader - Authorization: <token returned at login>\n\nPOST DATA - \n\n{\n  \"title\": \"This is a new thread title\",\n  \"content\": \"This is a thread content\"\n}\n\nRESPONSE -\n\n{\n    \"error\": 0,\n    \"message\": \"Success!!\",\n    \"data\": {\n        \"title\": \"This is a new thread title\",\n        \"content\": \"This is a thread content\",\n        \"threadId\": \"5f8bf85bf1ec050014e82e3e\"\n    }\n}"
 			},
 			"response": []
 		},
@@ -123,13 +126,13 @@
 					},
 					{
 						"key": "Authorization",
-						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmOGMzNjM0Y2YyMjE3MDAxMzRmNzZkMyIsInVzZXJuYW1lIjoiYWRAYmxhLmNvbSIsImRhdGUiOiIyMDIwLTEwLTE4VDEyOjM0OjE0LjkwNFoiLCJpYXQiOjE2MDMwMjQ0NTQsImV4cCI6MTYwMzAyODA1NH0.Xyqgkq9dUWe3XYZhLC7c_apZ9tBIQnnUg7VV59Q-oPE",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmOGNhNDg4MGQzZmIwMDAxOWJhYWM0NCIsInVzZXJuYW1lIjoiYWRAYmxhLmNvbSIsImRhdGUiOiIyMDIwLTEwLTE4VDIwOjI0OjU0Ljk5OFoiLCJpYXQiOjE2MDMwNTI2OTQsImV4cCI6MTYwMzA1NjI5NH0.d5TJCV5b1MfDFytBrM_CUqS5OLDesfMNbPHcJRBUB6w",
 						"type": "text"
 					}
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n  \"content\": \"First Post on Second Thread\",\n  \"thread_id\": \"5f8bf866f1ec050014e82e42\"\n}",
+					"raw": "{\n  \"content\": \"First Post on First Thread\",\n  \"parent_post_id\": \"5f8ca4c80d3fb00019baac51\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -148,7 +151,7 @@
 						"create"
 					]
 				},
-				"description": "POST API - \n\nHEADER - Authorization : <token returned at login>\n\nPOST DATA - \n\nEither parent_post_id or thread_id to be sent.\n\n{\n  \"content\": \"First Post on Second Thread\",\n  \"parent_post_id\": \"5f8bf866f1ec050014e82e42\", \n  \"thread_id\": \"5f8bf866f1ec050014e82e42\"\n}\n\nRESPONSE\n{\n    \"error\": 0,\n    \"message\": \"Success!!\",\n    \"data\": {\n        \"content\": \"First Post on Second Thread\",\n        \"postId\": \"5f8bf86ef1ec050014e82e43\"\n    }\n}"
+				"description": "POST API - Create Posts\n\nHEADER - Authorization : <token returned at login>\n\nPOST DATA - \n\nEither parent_post_id or thread_id to be sent.\n\n{\n  \"content\": \"First Post on Second Thread\",\n  \"parent_post_id\": \"5f8bf866f1ec050014e82e42\", \n  \"thread_id\": \"5f8bf866f1ec050014e82e42\"\n}\n\nRESPONSE\n{\n    \"error\": 0,\n    \"message\": \"Success!!\",\n    \"data\": {\n        \"content\": \"First Post on Second Thread\",\n        \"postId\": \"5f8bf86ef1ec050014e82e43\"\n    }\n}"
 			},
 			"response": []
 		},
@@ -164,7 +167,7 @@
 					},
 					{
 						"key": "Authorization",
-						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmOGMzNjM0Y2YyMjE3MDAxMzRmNzZkMyIsInVzZXJuYW1lIjoiYWRAYmxhLmNvbSIsImRhdGUiOiIyMDIwLTEwLTE4VDEyOjM0OjE0LjkwNFoiLCJpYXQiOjE2MDMwMjQ0NTQsImV4cCI6MTYwMzAyODA1NH0.Xyqgkq9dUWe3XYZhLC7c_apZ9tBIQnnUg7VV59Q-oPE",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmOGNhNDg4MGQzZmIwMDAxOWJhYWM0NCIsInVzZXJuYW1lIjoiYWRAYmxhLmNvbSIsImRhdGUiOiIyMDIwLTEwLTE4VDIwOjI0OjU0Ljk5OFoiLCJpYXQiOjE2MDMwNTI2OTQsImV4cCI6MTYwMzA1NjI5NH0.d5TJCV5b1MfDFytBrM_CUqS5OLDesfMNbPHcJRBUB6w",
 						"type": "text"
 					}
 				],
@@ -180,7 +183,7 @@
 						"get"
 					]
 				},
-				"description": "GET API \n\nHEADER - Authorization : <token returned at auth/login>\n\nResponse -\n\n{\n    \"error\": 0,\n    \"message\": \"Success!!\",\n    \"data\": [\n        {\n            \"_id\": \"5f8c35460cabdba16e25d698\",\n            \"codes\": \"1F44E\",\n            \"char\": \"👎\",\n            \"name\": \"thumbs down\",\n            \"category\": \"People & Body (hand-fingers-closed)\",\n            \"group\": \"People & Body\",\n            \"subgroup\": \"hand-fingers-closed\"\n        },\n        {\n            \"_id\": \"5f8c35460cabdba16e25d699\",\n            \"codes\": \"1F44D\",\n            \"char\": \"👍\",\n            \"name\": \"thumbs up\",\n            \"category\": \"People & Body (hand-fingers-closed)\",\n            \"group\": \"People & Body\",\n            \"subgroup\": \"hand-fingers-closed\"\n        },\n        {\n            \"_id\": \"5f8c35460cabdba16e25d69a\",\n            \"codes\": \"1F4AF\",\n            \"char\": \"💯\",\n            \"name\": \"hundred points\",\n            \"category\": \"Smileys & Emotion (emotion)\",\n            \"group\": \"Smileys & Emotion\",\n            \"subgroup\": \"emotion\"\n        }\n    ]\n}"
+				"description": "GET API - Get available reaction types\n\nHEADER - Authorization : <token returned at auth/login>\n\nResponse -\n\n{\n    \"error\": 0,\n    \"message\": \"Success!!\",\n    \"data\": [\n        {\n            \"_id\": \"5f8c35460cabdba16e25d698\",\n            \"codes\": \"1F44E\",\n            \"char\": \"👎\",\n            \"name\": \"thumbs down\",\n            \"category\": \"People & Body (hand-fingers-closed)\",\n            \"group\": \"People & Body\",\n            \"subgroup\": \"hand-fingers-closed\"\n        },\n        {\n            \"_id\": \"5f8c35460cabdba16e25d699\",\n            \"codes\": \"1F44D\",\n            \"char\": \"👍\",\n            \"name\": \"thumbs up\",\n            \"category\": \"People & Body (hand-fingers-closed)\",\n            \"group\": \"People & Body\",\n            \"subgroup\": \"hand-fingers-closed\"\n        },\n        {\n            \"_id\": \"5f8c35460cabdba16e25d69a\",\n            \"codes\": \"1F4AF\",\n            \"char\": \"💯\",\n            \"name\": \"hundred points\",\n            \"category\": \"Smileys & Emotion (emotion)\",\n            \"group\": \"Smileys & Emotion\",\n            \"subgroup\": \"emotion\"\n        }\n    ]\n}"
 			},
 			"response": []
 		},
@@ -196,7 +199,7 @@
 					},
 					{
 						"key": "Authorization",
-						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmOGNhNDg4MGQzZmIwMDAxOWJhYWM0NCIsInVzZXJuYW1lIjoiYWRAYmxhLmNvbSIsImRhdGUiOiIyMDIwLTEwLTE4VDIwOjI0OjU0Ljk5OFoiLCJpYXQiOjE2MDMwNTI2OTQsImV4cCI6MTYwMzA1NjI5NH0.d5TJCV5b1MfDFytBrM_CUqS5OLDesfMNbPHcJRBUB6w",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmOGQ0Y2E2MTA2ZDYzMDAxOWIzOGExOSIsInVzZXJuYW1lIjoiYWRAYmxhLmNvbSIsImRhdGUiOiIyMDIwLTEwLTE5VDA4OjIyOjA0LjQ3NFoiLCJpYXQiOjE2MDMwOTU3MjQsImV4cCI6MTYwMzA5OTMyNH0.5-TaPz2DefjlHW2hCbDgYUWi4ykFMqUr1D5hnKW1OSI",
 						"type": "text"
 					}
 				],
@@ -214,7 +217,8 @@
 					"path": [
 						"react"
 					]
-				}
+				},
+				"description": "POST API - Submit Reaction to a specific post or thread\n\nPOST DATA - \n\n{\n    \"reaction_type_id\": \"5f8ca44f622d792fdede1b80\",\n    \"thread_id\": \"5f8ca4b00d3fb00019baac47\" || \"post_id\": \"5f8ca4b00d3fb00019baac47\"\n}\n\nRESPONSE -\n\n{\n    \"error\": 0,\n    \"message\": \"Success!!\",\n    \"data\": {\n        \"reactionId\": \"5f8d4cba106d630019b38a1a\"\n    }\n}"
 			},
 			"response": []
 		}

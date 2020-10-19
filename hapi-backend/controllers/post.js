@@ -41,7 +41,7 @@ module.exports = [
         options: {
             auth: 'jwt',
             description: 'Create Posts',
-            notes: 'Returns created object with ID',
+            notes: 'POST API - Create Posts\n\nHEADER - Authorization : <token returned at login>\n\nPOST DATA - \n\nEither parent_post_id or thread_id to be sent.\n\n{\n  \"content\": \"First Post on Second Thread\",\n  \"parent_post_id\": \"5f8bf866f1ec050014e82e42\", \n  \"thread_id\": \"5f8bf866f1ec050014e82e42\"\n}\n\nRESPONSE\n{\n    \"error\": 0,\n    \"message\": \"Success!!\",\n    \"data\": {\n        \"content\": \"First Post on Second Thread\",\n        \"postId\": \"5f8bf86ef1ec050014e82e43\"\n    }\n}',
             tags: ['api', 'posts', 'create'],
             validate: {
                 payload: Joi.object({

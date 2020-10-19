@@ -66,7 +66,7 @@ module.exports = [
         options: {
             auth: 'jwt',
             description: 'Submit User Reaction',
-            notes: 'Returns Success or Error if already exist.',
+            notes: 'POST API - Submit Reaction to a specific post or thread\n\nPOST DATA - \n\n{\n    \"reaction_type_id\": \"5f8ca44f622d792fdede1b80\",\n    \"thread_id\": \"5f8ca4b00d3fb00019baac47\" || \"post_id\": \"5f8ca4b00d3fb00019baac47\"\n}\n\nRESPONSE -\n\n{\n    \"error\": 0,\n    \"message\": \"Success!!\",\n    \"data\": {\n        \"reactionId\": \"5f8d4cba106d630019b38a1a\"\n    }\n}',
             tags: ['api', 'reactions', 'create'],
             pre: [
                 { method: verifyUniqueReaction }
