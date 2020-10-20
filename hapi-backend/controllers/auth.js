@@ -40,16 +40,19 @@ module.exports = [
           });
           
           if (user) {
-            const token = await new Promise((resolve, reject) => {
+            const response = await new Promise((resolve, reject) => {
               bcrypt.compare(request.payload.password, user.password, (err, isValid) => {
                 if (isValid) {
                   resolve(createToken(user));
                 } else {
-                  throw Boom.badRequest('Incorrect password!');
+                  reject(Boom.badRequest('Incorrect password!'));
                 }
               });
             });
-            return h.response({error : 0, message:"Success", token: token}).code(201);
+            if( response.isBoom ) {
+              return h.response(response.output.payload).code(201);
+            }
+            return h.response({error : 0, message:"Success", token: response}).code(201);
           } 
           
           throw Boom.badRequest('Incorrect username or email!');

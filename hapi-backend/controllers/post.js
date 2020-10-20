@@ -70,7 +70,7 @@ module.exports = [
                     content: post.content,
                     postId: post._id,
                 };
-                return h.response({error : 0, message: "Success!!", data: responseData}).code(201)   
+                return h.response({error : 0, message: "Success!!", data: responseData}).code(201);
             } catch(err) {
                 throw Boom.badRequest(err);
             }
@@ -88,7 +88,7 @@ module.exports = [
                     content: Joi.string().required(),
                     thread_id: Joi.string(),
                     parent_post_id: Joi.string(),
-                }).or('thread_id', 'parent_post_id')
+                }).xor('thread_id', 'parent_post_id')
             }
         }
     }
