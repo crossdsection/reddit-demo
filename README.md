@@ -69,7 +69,7 @@ sudo ./docker.sh
 
 - Now run below command in the project directory on the manager machine - 
 
-```sudo docker stack deploy -c docker-compose.yml reddit-demo```
+```sudo docker stack deploy -c docker-stack.yml reddit-demo```
 
 - Run below command to list service names -
 
