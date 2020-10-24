@@ -12,26 +12,27 @@ services:
           - node.role == manager
     ports: 
       - "27017:27017"
-    networks:
-      - reddit
     volumes:
       - ./init-mongo.js:/docker-entrypoint-initdb.d/init-mongo.js
       - mongodb:/data/mongodb
+    networks:
+      - reddit
   redisdb:
     image: redis
     volumes:
       - redis:/data/
     ports:
       - "6379"
-    networks:
-      - reddit
   app:
     build: 
       context: ./hapi-backend/
       dockerfile: ./Dockerfile
     image: crossdsection/hapi-backend:latest
     ports: 
-      - "3000:3000"
+      - "80:3000"
+    depends_on:
+      - mongodb
+      - redisdb
     environment:
       MONGO_HOST: mongodb
       MONGO_PORT: "27017"
@@ -40,6 +41,7 @@ services:
       MONGO_PASS: redditpass
       REDIS_HOST: redisdb
       REDIS_PORT: "6379"
+      HOSTNAME: app
     networks:
       - reddit
   micro:
@@ -47,6 +49,9 @@ services:
       context: ./beequeue-micro/
       dockerfile: ./Dockerfile
     image: crossdsection/beequeue-micro:latest
+    depends_on:
+      - mongodb
+      - redisdb
     environment:
       MONGO_HOST: mongodb
       MONGO_PORT: "27017"
@@ -62,3 +67,4 @@ volumes:
   redis:
 networks:
   reddit:
+    driver: overlay

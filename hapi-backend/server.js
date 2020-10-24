@@ -29,14 +29,11 @@ const validate = async function (decoded, request, h) {
 
 const init = async () => {
     let serverJSON = {
-        port: 3000,
-        host: "localhost"
+        port: 3000
     }
-    if ( process.env.IS_DOCKER == "true" ) {
-        serverJSON = {
-            port: 3000
-        };
-    }
+    if ( process.env.HOSTNAME == null ) {
+        serverJSON['host'] = 'localhost';
+    } 
     const server = Hapi.server( serverJSON );
 
     await server.register([
@@ -69,7 +66,7 @@ const init = async () => {
         }
     });
 
-    // console.log('Server running on %s', server.info.uri);
+    console.log('Server running on %s', server.info.uri);
 
     return server;
 };

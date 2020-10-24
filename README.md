@@ -69,7 +69,7 @@ sudo ./docker.sh
 
 - Now run below command in the project directory on the manager machine - 
 
-```sudo docker stack deploy -c docker-stack.yml reddit-demo```
+```sudo docker stack deploy -c docker-stack.yml --with-registry-auth reddit-demo```
 
 - Run below command to list service names -
 
@@ -106,3 +106,13 @@ fstbz8kthp5l        reddit-demo_mongodb.1     worker3
 
  - Otherwise API description is also available in the postman collection.
  
+
+## To Be Worked on Usage of private registry.
+
+```
+sudo docker pull registry:2
+
+sudo docker run -d -p 5000:5000 --restart=always --name registry registry:2
+
+sudo docker ps 
+```
