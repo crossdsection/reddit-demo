@@ -26,6 +26,21 @@ describe('API Testing', () => {
         });
     });
 
+    describe('Email already registered', () => {
+        it('responds with 400 auth/register and message Email taken!', async () => {
+            const res = await server.inject({
+                method: 'POST',
+                url: '/auth/register',
+                payload: {
+                    email: "blabla@bla.com",
+                    password: "hjdlajksd!33",
+                }
+            });
+            let response = JSON.parse(res.payload);
+            expect(res.statusCode).to.equal(400);
+            expect(response.message).to.equal("Email taken!");
+        });
+    })
     describe('Invalid Email Address', () => {
         it('responds with 400 auth/register and error message ', async () => {
             const res = await server.inject({
@@ -41,21 +56,7 @@ describe('API Testing', () => {
             expect(response.message).to.equal("Invalid request payload input");
         });
     });
-
-    // it('responds with 201 auth/register and message success ', async () => {
-    //     const res = await server.inject({
-    //         method: 'POST',
-    //         url: '/auth/register',
-    //         payload: {
-    //             email: "blabla@bla.com",
-    //             password: "hjdlajksd!33",
-    //         }
-    //     });
-    //     let response = JSON.parse(res.payload);
-    //     expect(res.statusCode).to.equal(201);
-    //     expect(response.message).to.equal("Success!!");
-    // });
-
+    
     describe('Failed login - incorrect password', () => {
         it('responds with 400 auth/login and message Incorrect password ', async () => {
             const res = await server.inject({

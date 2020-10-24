@@ -29,11 +29,19 @@ const replyCountQueue = new Queue('REPLY_COUNT', sharedConfig);
 const reactionCountQueue = new Queue('REACTION_COUNT', sharedConfig);  
 
 replyCountQueue.process(async (job) => {
-    await updateReplyCount( job.data );
+    try {
+        await updateReplyCount( job.data );
+    } catch( err ) {
+        console.log(err);
+    }
 });
 
 reactionCountQueue.process(async (job) => {
-    await updateReactionCount( job.data );
+    try {
+        await updateReactionCount( job.data );
+    } catch( err ) {
+        console.log(err);
+    }
 });
 
 process.on('unhandledRejection', (err) => {

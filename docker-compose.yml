@@ -22,7 +22,7 @@ services:
     volumes:
       - redis:/data/
     ports:
-      - "6379"
+      - "6379:6379"
   app:
     build: 
       context: ./hapi-backend/
@@ -30,9 +30,6 @@ services:
     image: crossdsection/hapi-backend:latest
     ports: 
       - "80:3000"
-    depends_on:
-      - mongodb
-      - redisdb
     environment:
       MONGO_HOST: mongodb
       MONGO_PORT: "27017"
@@ -49,9 +46,6 @@ services:
       context: ./beequeue-micro/
       dockerfile: ./Dockerfile
     image: crossdsection/beequeue-micro:latest
-    depends_on:
-      - mongodb
-      - redisdb
     environment:
       MONGO_HOST: mongodb
       MONGO_PORT: "27017"

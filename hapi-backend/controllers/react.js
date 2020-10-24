@@ -1,4 +1,8 @@
 const Reactions = require('../models/reactions');
+const Posts = require("../models/posts");
+const Threads = require("../models/threads");
+const ObjectId = require('mongoose').Types.ObjectId; 
+
 const Joi = require("joi");
 const Boom = require("@hapi/boom");
 const { updateReactionCount } = require("../utils/notification");
@@ -8,10 +12,33 @@ async function verifyUniqueReaction(req, h) {
         userId: req.auth.credentials.id
     };
     if( req.payload.thread_id ) {
+        if( !ObjectId.isValid(req.payload.thread_id) ) {
+            throw Boom.badRequest("Invalid thread id!");
+        }
+
         condition['threadId'] = req.payload.thread_id;
+
+        const threads = await Threads.find({
+            _id: req.payload.thread_id
+        });
+
+        if (threads == null || threads.length == 0) {
+            throw Boom.badRequest("Thread Not Found!");
+        }
     }
     if( req.payload.post_id ) {
+        if( !ObjectId.isValid(req.payload.post_id) ) {
+            throw Boom.badRequest("Invalid post id!");
+        }
+
         condition['postId'] = req.payload.post_id;
+        const post = await Posts.find({
+            _id: req.payload.post_id
+        });
+
+        if (post == null || post.length == 0) {
+            throw Boom.badRequest("Post Not Found!");
+        }
     }
 
     const reaction = await Reactions.findOne({

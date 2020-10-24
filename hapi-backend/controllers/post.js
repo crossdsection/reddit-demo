@@ -34,7 +34,7 @@ async function verifyParentExist(req, h) {
         if (post !== null && post.length > 0) {
             return req;
         } else {
-            throw Boom.badRequest("Thread Not Found!");
+            throw Boom.badRequest("Post Not Found!");
         }
     }
 }

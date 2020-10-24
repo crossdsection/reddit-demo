@@ -22,7 +22,7 @@ services:
     volumes:
       - redis:/data/
     ports:
-      - "6379"
+      - "6379:6379"
     networks:
       - reddit
   app:
