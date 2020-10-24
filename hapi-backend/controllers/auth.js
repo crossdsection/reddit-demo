@@ -52,7 +52,7 @@ module.exports = [
             if( response.isBoom ) {
               return h.response(response.output.payload).code(201);
             }
-            return h.response({error : 0, message:"Success", token: response}).code(201);
+            return h.response({error : 0, message:"Success!!", token: response}).code(201);
           } 
           
           throw Boom.badRequest('Incorrect username or email!');
